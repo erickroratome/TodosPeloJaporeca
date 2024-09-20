@@ -1,0 +1,54 @@
+# IA - Geração de Texto com Modelos de Linguagem
+
+Este repositório contém exemplos de código que exploram o uso de modelos de linguagem (LLMs) para gerar texto, analisar prompts e interpretar tokens. Utilizamos o **TinyLlama-1.1B-Chat-v1.0** e o **gpt2-small-portuguese** como exemplos de modelos de geração.
+
+## Visão Geral do Código
+
+O código neste repositório foi criado para ilustrar como utilizar pipelines de geração de texto da biblioteca `transformers` e como os prompts são processados internamente pelos modelos.
+
+### Principais Conceitos
+
+### 1. **Pipeline de Geração de Texto**
+O `pipeline` é uma funcionalidade oferecida pela biblioteca `transformers`, que agrupa todas as funções necessárias para completar uma tarefa de processamento de linguagem natural. No caso de **geração de texto**, ele cuida das etapas de:
+   - Pré-processamento (tokenização do texto)
+   - Geração de texto a partir do modelo
+   - Pós-processamento (decodificação dos tokens gerados de volta em palavras)
+
+### 2. **Modelos Utilizados**
+   - **TinyLlama/TinyLlama-1.1B-Chat-v1.0**: Modelo otimizado para tarefas de chat e geração de texto, com suporte a até 2048 tokens de input. Ele conhece até 32.000 palavras (tokens).
+   - **pierreguillou/gpt2-small-portuguese**: Modelo GPT-2 pequeno treinado para o idioma português, capaz de processar até 768 tokens e um vocabulário de 50.257 tokens.
+
+### 3. **Tokenização**
+A tokenização é o processo de converter uma sequência de palavras em números que representam tokens. O modelo trabalha com tokens, e não diretamente com texto, por isso, antes de passar o texto para o modelo, ele é "quebrado" em partes menores chamadas tokens, que são números inteiros.
+   - **Token IDs**: São os números inteiros que representam as palavras ou partes de palavras no modelo.
+   - **Tokenização e Decodificação**: O processo de tokenização converte o texto em tokens, enquanto a decodificação faz o caminho inverso, convertendo os tokens de volta em palavras.
+
+### 4. **Temperatura**
+A temperatura é um parâmetro que controla o nível de "criatividade" do modelo na geração de texto. Ela influencia o grau de aleatoriedade na escolha das próximas palavras (tokens):
+   - **Temperatura Baixa (próxima de 0)**: O modelo tende a ser mais determinístico, escolhendo as palavras com maior probabilidade.
+   - **Temperatura Alta (acima de 0.7)**: O modelo é mais criativo e imprevisível, escolhendo palavras com menor probabilidade.
+
+### 5. **Análise de Prompts**
+O código analisa um conjunto de prompts criativos e absurdos, mostrando como o modelo processa perguntas com informações incoerentes ou factualmente incorretas. Exemplo de perguntas:
+   - "Qual é o nome do país invisível entre a França e a Alemanha?"
+   - "Como era a internet na época dos dinossauros?"
+
+Esse tipo de análise é útil para testar como o modelo responde a informações incorretas e para entender seus limites.
+
+## Como Usar o Código
+
+1. **Análise e Geração de Texto**: Utilize a função `analisa_e_processa_prompt()` para analisar como o modelo tokeniza e processa um determinado prompt.
+2. **Verificação de Tokens**: Veja como os tokens são convertidos do texto para IDs e como o modelo entende as palavras que compõem o prompt.
+3. **Geração Criativa**: Experimente modificar a temperatura nos modelos para observar como as saídas geradas mudam conforme a aleatoriedade aumenta.
+
+### Exemplos de Prompts
+O código também inclui um conjunto de exemplos de prompts que testam o comportamento dos modelos em situações absurdas ou factualmente incorretas, como:
+   - "Qual é a cor do vento?"
+   - "Qual é a receita secreta da Coca-Cola?"
+
+## Dependências
+
+Este projeto utiliza a biblioteca `transformers` para o uso dos modelos de linguagem. Certifique-se de ter instalado o pacote antes de rodar o código:
+
+```bash
+pip install transformers
