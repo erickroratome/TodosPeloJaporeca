@@ -1,0 +1,15 @@
+Importação da Biblioteca: O código começa importando a biblioteca transformers, que é amplamente utilizada para trabalhar com modelos de linguagem de grande porte (LLMs). Ela nos permite acessar funcionalidades como tokenização, geração de texto e muito mais. O principal objetivo desta importação é usar a função pipeline, que facilita o uso de modelos sem precisar configurar manualmente todas as etapas do processo.
+
+Pipeline de Geração de Texto: Criamos o pipeline, um "atalho" que agrupa todas as funções necessárias para realizar a tarefa desejada. O task="text-generation" indica que estamos trabalhando com a tarefa de geração de texto, ou seja, o modelo vai prever o próximo token (palavra ou parte da palavra) com base em um prompt. O model especifica o modelo que estamos usando: TinyLlama-1.1B-Chat-v1.0, que é capaz de gerar texto com base em entradas do usuário. O device="cuda" indica que o modelo vai usar a GPU (caso disponível), o que acelera bastante o processamento comparado ao uso de CPU.
+
+Função para Analisar e Processar o Prompt: Esta função é responsável por realizar a análise detalhada do prompt que será fornecido pelo usuário. Ela faz o processo de tokenização, decodificação e, por fim, usa o modelo para gerar uma saída baseada no prompt.
+
+Tokenização: Transformamos o texto (o prompt) em tokens, que são essencialmente números inteiros que o modelo entende. Cada palavra ou parte da palavra no texto é mapeada para um número específico, facilitando o processamento pelo modelo. A tokenização é uma etapa fundamental, pois o modelo não pode trabalhar diretamente com texto — ele só entende números.
+
+Exibição dos Tokens: Fazemos o processo inverso: convertendo os números (tokens) de volta para palavras. Isso é útil para visualizarmos como o modelo está "entendendo" as palavras do prompt.
+
+Primeiros Tokens Conhecidos pelo Modelo: Exibimos os primeiros tokens que o modelo "conhece". Cada modelo é treinado com um vocabulário específico, e essa parte nos dá uma ideia de como esse vocabulário é estruturado.
+
+Geração de Texto pelo Modelo: Aqui o modelo gera o texto com base no prompt fornecido. Ativamos o sampling, o que significa que o modelo não vai sempre escolher a palavra mais provável, adicionando um pouco de aleatoriedade à geração. A temperatura controla a "criatividade" do modelo. Valores mais altos tornam o modelo mais aleatório, enquanto valores mais baixos o tornam mais conservador.
+
+Exemplo de Uso da Função: Testamos a função com o prompt "Once upon a time". O modelo processa este input, tokeniza e gera uma continuação para essa frase.]
